@@ -33,7 +33,6 @@ def get_html_with_selenium(url: str) -> str:
                     "https": current_proxy
                 },
             }
-            options.add_argument(f"--proxy-server={current_proxy}")
 
         driver_path = Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(
@@ -94,7 +93,7 @@ def get_site_data(url: str) -> tuple:
         proxies = {}
 
     try:
-        result = requests.get(url, headers=HEADERS, proxies=proxies, timeout=60)
+        result = requests.get(url, headers=HEADERS, proxies=proxies, timeout=10)
         result.raise_for_status()
         soup = BeautifulSoup(result.text, "lxml")
 

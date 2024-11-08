@@ -10,8 +10,10 @@ def load_proxies(file_path: str) -> None:
 
     global proxies_list
 
+    processed_file_path = file_path.strip('"')
+
     try:
-        with open(file_path, "r") as f:
+        with open(processed_file_path, "r") as f:
             proxies_list = [line.strip() for line in f if line.strip()]
     except Exception as exc:
         print(f"Не удалось получить прокси из файла: {exc}")
